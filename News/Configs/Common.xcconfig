@@ -1,0 +1,12 @@
+//
+//  Common.xcconfig
+//  News
+//
+//  Created by Gökhan KOCA on 8.10.2021.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+buildNumber = 1
+buildVersion = 0.0.1

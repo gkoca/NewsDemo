@@ -1,0 +1,14 @@
+//
+//  Debug.xcconfig
+//  News
+//
+//  Created by Gökhan KOCA on 8.10.2021.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Common.xcconfig"
+
+bundleIdentifier = works.gkoca.news.dev
+baseURL = https:\/\/saurav.tech\/NewsAPI
