@@ -22,6 +22,7 @@ final class ArticleListCell: UICollectionViewCell {
   
   func setViewModel() {
     imageView.load(from: viewModel?.imageUrl ?? "",contentMode: .scaleAspectFill)
+    imageView.layer.cornerRadius = 8
     titleLabel.text = viewModel?.title
     detailLabel.text = viewModel?.detail
     if let date = viewModel?.caption {
