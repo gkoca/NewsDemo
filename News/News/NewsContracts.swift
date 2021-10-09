@@ -10,11 +10,8 @@ import Foundation
 protocol NewsViewModelProtocol {
   var delegate: NewsViewModelDelegate? { get set }
   func load()
-  func getTitle() -> String
-  func numberOfSections() -> Int
-  func numberOfItemsIn(section: Int) -> Int
-  func article(at index: Int) -> ArticleListCellViewModel
-  func latest() -> CollectionViewItemViewModel
+  func getArticles() -> [ArticleListCellViewModel]
+  func getLatest() -> [ArticleListCellViewModel]
 }
 
 enum NewsViewModelOutput {  

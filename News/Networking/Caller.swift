@@ -45,7 +45,6 @@ extension Caller {
   }
   
   private func call<T: Decodable>(_ urlRequest: URLRequest, shoudShowLoading: Bool) -> AnyPublisher<T, APIError> {
-    
     let decoder = JSONDecoder()
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
@@ -56,7 +55,6 @@ extension Caller {
     return URLSession.DataTaskPublisher(request: urlRequest, session: .shared)
       .tryMap { data, response in
         Loading.hide()
-        print(data)
         guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
           throw APIError.unknown
         }
@@ -64,7 +62,6 @@ extension Caller {
       }
       .decode(type: T.self, decoder: decoder)
       .mapError { error in
-        print(error)
         Loading.hide()
         if let error = error as? APIError {
           return error

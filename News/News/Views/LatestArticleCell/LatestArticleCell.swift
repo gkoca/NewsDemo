@@ -9,7 +9,7 @@ import UIKit
 
 final class LatestArticleCell: UICollectionViewCell {
   
-  var viewModel: LatestArticleCellViewModel? {
+  var viewModel: ArticleListCellViewModel? {
     didSet {
       setViewModel()
     }

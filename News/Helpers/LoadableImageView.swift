@@ -30,14 +30,11 @@ final class LoadableImageView: UIImageView {
     activityIndicator.startAnimating()
     self.contentMode = contentMode
     if urlString.isEmpty {
-      print("IMAGE -> urlString is empty")
       if let placeholder = placeholder {
-        print("IMAGE -> Returning placeholder")
         self.image = UIImage(named: placeholder)
         self.activityIndicator.stopAnimating()
         return
       }
-      print("IMAGE -> Returning nil")
       return
     }
     if let image = ImageRepository.shared.getImage(with: urlString.sha1Value) {

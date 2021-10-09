@@ -1,5 +1,5 @@
 //
-//  ArticleListCell.swift
+//  ArticleCell.swift
 //  News
 //
 //  Created by Gökhan KOCA on 9.10.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ArticleListCell: UICollectionViewCell {
+final class ArticleCell: UICollectionViewCell {
   
   var viewModel: ArticleListCellViewModel? {
     didSet {

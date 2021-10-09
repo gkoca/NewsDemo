@@ -1,12 +1,15 @@
 //
-//  LatestArticleCellViewModel.swift
+//  ArticleListCellViewModel.swift
 //  News
 //
 //  Created by Gökhan KOCA on 9.10.2021.
 //
 
-struct LatestArticleCellViewModel {
+import Foundation
+
+struct ArticleListCellViewModel: Hashable {
   let imageUrl: String?
   let title: String?
   let detail: String?
+  let caption: Date?
 }

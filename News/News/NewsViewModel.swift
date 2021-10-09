@@ -27,7 +27,6 @@ final class NewsViewModel: NewsViewModelProtocol {
     subscriber = NewsApi.news.call(News.self, shoudShowLoading: true)
       .receive(on: DispatchQueue.main)
       .sink(receiveCompletion: { [weak self] in
-        print($0)
         switch $0 {
         case .finished:
           break
@@ -51,38 +50,21 @@ final class NewsViewModel: NewsViewModelProtocol {
     articles = allArticles
   }
   
-  func getTitle() -> String {
-    "News"
-  }
-  
-  func numberOfSections() -> Int {
-    news != nil ? 2 : 0
-  }
-  
-  func numberOfItemsIn(section: Int) -> Int {
-    switch section {
-    case 0:
-      return 1
-    case 1:
-      return articles.count
-    default:
-      return 0
+  func getArticles() -> [ArticleListCellViewModel] {
+    articles.map { article in
+      ArticleListCellViewModel(imageUrl: article.urlToImage,
+                                      title: article.title,
+                                      detail: article.content,
+                                      caption: article.publishedAt)
     }
   }
   
-  func article(at index: Int) -> ArticleListCellViewModel {
-    let article = articles[index]
-    return ArticleListCellViewModel(imageUrl: article.urlToImage,
-                                    title: article.title,
-                                    detail: article.content,
-                                    caption: article.publishedAt)
-  }
-  
-  func latest() -> CollectionViewItemViewModel {
-    CollectionViewItemViewModel(items: latestArticles.map { article in
-      LatestArticleCellViewModel(imageUrl: article.urlToImage,
-                                 title: article.title,
-                                 detail: article.content)
-    })
+  func getLatest() -> [ArticleListCellViewModel] {
+    latestArticles.map { article in
+      ArticleListCellViewModel(imageUrl: article.urlToImage,
+                                      title: article.title,
+                                      detail: article.content,
+                                      caption: article.publishedAt)
+    }
   }
 }

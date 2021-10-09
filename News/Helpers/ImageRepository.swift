@@ -14,7 +14,6 @@ class ImageRepository {
   private var imageCache = NSCache<AnyObject, UIImage>()
 
   func cache(image: UIImage, with id: String) {
-    print("IMAGE -> Caching with id: \(id)")
     imageCache.setObject(image, forKey: id as AnyObject)
     let cacheURL = getCacheDirectoryPath()
     if let data = image.jpegData(compressionQuality: 1) {
@@ -26,13 +25,11 @@ class ImageRepository {
 
   func getImage(with id: String) -> UIImage? {
     if let image = imageCache.object(forKey: id as AnyObject) {
-      print("IMAGE -> Found in NSCache with id: \(id)")
       return image
     }
     let cacheURL = getCacheDirectoryPath()
     let fileName = id.replacingOccurrences(of: "/", with: "")
     let fileURL = cacheURL.appendingPathComponent(fileName)
-    print("IMAGE -> Not found in NSCache\nIMAGE -> Reading from file with id: \(id)")
     do {
       let imageData = try Data(contentsOf: fileURL)
       if let image = UIImage(data: imageData) {
