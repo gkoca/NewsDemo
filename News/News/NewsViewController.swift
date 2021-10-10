@@ -98,6 +98,11 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
   }
   
   private func renderData() {
+    var snapshot = NSDiffableDataSourceSnapshot<Section, ArticleListCellViewModel>()
+    snapshot.appendSections([.latest, .list])
+    snapshot.appendItems(viewModel?.getLatest() ?? [], toSection: .latest)
+    snapshot.appendItems(viewModel?.getArticles() ?? [], toSection: .list)
+    
     dataSource = UICollectionViewDiffableDataSource<Section, ArticleListCellViewModel>(collectionView: collectionView) {
       (collectionView: UICollectionView, indexPath: IndexPath, identifier: ArticleListCellViewModel) -> UICollectionViewCell? in
       
@@ -124,10 +129,7 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
       return header
     }
     
-    var snapshot = NSDiffableDataSourceSnapshot<Section, ArticleListCellViewModel>()
-    snapshot.appendSections([.latest, .list])
-    snapshot.appendItems(viewModel?.getLatest() ?? [], toSection: .latest)
-    snapshot.appendItems(viewModel?.getArticles() ?? [], toSection: .list)
+    
     dataSource.apply(snapshot, animatingDifferences: false)
   }
 }

@@ -8,8 +8,13 @@
 import Foundation
 
 struct ArticleListCellViewModel: Hashable {
+  let id: UUID = UUID()
   let imageUrl: String?
   let title: String?
   let detail: String?
   let caption: Date?
+  
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
+  }
 }
