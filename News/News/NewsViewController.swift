@@ -83,7 +83,8 @@ final class NewsViewController: UIViewController, UICollectionViewDelegate {
   }
   
   private func createLayout() -> UICollectionViewLayout {
-    let layout = UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
+    let layout = UICollectionViewCompositionalLayout { [weak self] sectionNumber, env -> NSCollectionLayoutSection? in
+      guard let self = self else { return nil }
       switch Section(rawValue: sectionNumber) {
       case .latest:
         return self.gridSection()
